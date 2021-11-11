@@ -21,8 +21,8 @@
                  <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">INVENTARIOS<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="producto_agregar.php">AGREGAR NUEVOS PRODUCTOS</a></li>
-                        <li><a href="#">REABASTECER INVENTARIO</a></li>
+                        <li><a href="cliente_agregar.php">AGREGAR CLIENTES FRECUENTES</a></li>
+                        <li><a href="producto_seleccionar_marca.php">AGREGAR PRODUCTOS</a></li>
                         <li class="divider"></li>
                         <li><a href="#">DAR DE ALTA UN PRODUCTO</a></li>
 						<li><a href="#">DAR DE BAJA UN PRODUCTO</a></li>

@@ -1,103 +1,32 @@
 <?php
 include 'inc/conexion.php';
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre_del_producto_post = strtoupper($_POST['nombre_del_producto']);
-    $categoria_del_producto_post = strtoupper($_POST['categoria_producto']);
-    $cantidad_del_producto_post = strtoupper($_POST['cantidad']);
-    $precio_del_producto_post = strtoupper($_POST['precio']);
-	$disponibilidad = "SI";
-    $estado_del_producto_post = strtoupper($_POST['estado']);
-	$fecha_ingreso_post = strtoupper($_POST['fechaIng']);
-	$clasificacion_del_producto_post = strtoupper($_POST['clasif_prod']);
+$refaccion_id = "";
+$marca_id_post = $_POST['marca_id'];
+$nombre_producto_post = strtoupper($_POST['nombre_de_producto']);
+$descripcion_producto_post = strtoupper($_POST['descripcion_de_producto']);
+$refaccion_imagen="sin imagen";
 
-	
-	try
-	{			
-		$cons = "SELECT * FROM inventario where Producto = '$nombre_del_producto_post'";
-		$cons = "SELECT * FROM inventario where Producto = '$nombre_del_producto_post'";
-		$res = $objetoPDO->prepare($cons);
-		$res->execute();
+$sel = $con->prepare("SELECT productos_id,marca_id,productos_nombre FROM productos where marca_id=? AND productos_nombre=?");
+$sel->bind_param('is', $marca_id_post, $nombre_producto_post);
+$sel->execute();
+$res = $sel->get_result();
+$row = mysqli_num_rows($res);
 
-		if ($res->rowCount() > 0) 
-		{
-			echo 
-				'<style type="text/css">
-				  p { 
-						padding: 20px;
-						width: 100%;
-						background-color: #f44336;
-						color: white;
-						font-size: 28px;
-						margin-bottom: 15px;
-					}
-				</style>
-				<div class="alertBien">				
-					<center> <p> <strong>¡ERROR!</strong> El Producto que intenta registrar ya existe.</p> </center>
-				</div>';
-			require("index.php");	
-		}
-
-		else
-		{
-			if($cantidad_del_producto_post == "0")
-			{
-				$consultaEjecutar = "insert into inventario (Producto, Categoria, Cantidad, PrecioUnitario, Disponibilidad, Estado, FechaIngreso, Clasificación)
-				values ('$nombre_del_producto_post', '$categoria_del_producto_post', '$cantidad_del_producto_post', '$precio_del_producto_post', 'NO', '$estado_del_producto_post', '$fecha_ingreso_post', '$clasificacion_del_producto_post')";
-
-				$resultado = $objetoPDO->query($consultaEjecutar);
-				if ($resultado) 
-				{
-					 echo 
-						'<style type="text/css">
-						  p { 
-								padding: 20px;
-								width: 100%;
-								background-color: #04AA6D;
-								color: white;
-								margin-bottom: 15px;
-								font-size: 28px;
-								margin-bottom: 15px;
-							}
-						</style>
-						<div class="alertBien">				
-							<center> <p> <strong>¡REGISTRADO!</strong> El producto se registró con éxito</p> </center>
-						</div>';
-					require("index.php");	
-				}
-			}
-				
-			else
-			{
-				$consultaEjecutar = "insert into inventario (Producto, Categoria, Cantidad, PrecioUnitario, Disponibilidad, Estado, FechaIngreso, Clasificación)
-				values ('$nombre_del_producto_post', '$categoria_del_producto_post', '$cantidad_del_producto_post', '$precio_del_producto_post', 'SI', '$estado_del_producto_post', '$fecha_ingreso_post', '$clasificacion_del_producto_post')";
-				$resultado = $objetoPDO->query($consultaEjecutar);
-
-				if ($resultado) 
-				{
-					 echo 
-						'<style type="text/css">
-						  p { 
-								padding: 20px;
-								width: 100%;
-								background-color: #04AA6D;
-								color: white;
-								margin-bottom: 15px;
-								font-size: 28px;
-								margin-bottom: 15px;
-							}
-						</style>
-						<div class="alertBien">				
-							<center> <p> <strong>¡REGISTRADO!</strong> El producto se registró con éxito</p> </center>
-						</div>';
-					require("index.php");	
-				}
-			}
-		}
-	}
-
-	catch(PDOException $e)
-	{
-		echo 'Falló la conexión: ' . $e->getMessage();
-	}
-	$objetoPDO->close();
+if ($row != 0) {
+    echo "YA EXISTE EL PRODUCTO " . $nombre_producto_post . " PARA LA MARCA SELECCIONADA";
+    echo "¿Deseas agregarle un nuevo precio de proveedor?";
+    echo "<a href=\"refacciones_proveedores.php?refaccion_id=" . $refaccion_id . "&productos_nombre=" . $nombre_producto_post . "\" class=\"btn btn-primary\" role=\"button\"> AGREGAR </a>";
+    echo "<a href=\"index_refacciones.php\" class=\"btn btn-default\" role=\"button\"> CANCELAR </a>";
+} else {
+    $ins = $con->prepare("INSERT INTO productos VALUES(?,?,?,?,?)");
+    $ins->bind_param("iisss", $id, $marca_id_post, $nombre_producto_post, $descripcion_producto_post, $refaccion_imagen);
+    if ($ins->execute()) {
+        echo "Producto guardado <br> Ahora debes agregarle un precio de proveedor (si no lo haces puedes provocar p&eacute;rdida de informaci&oacute;n) --";
+        echo "Registrado Producto";
+    } else {
+        echo "Error al insertar Producto";
+    }
+    $ins->close();
+    $con->close();
 }
+?>

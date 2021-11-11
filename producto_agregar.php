@@ -1,7 +1,11 @@
+<?php
+$id_marca_seleccionada = $_GET['marca_id'];
+$nombre_marca_seleccionada = $_GET['marca_nombre'];
+?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registrar Producto</title>
+        <title>Datos del Nuevo Producto</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--código que incluye Bootstrap-->
@@ -13,58 +17,35 @@
         <!--código que incluye el menú responsivo-->
         <?php include'inc/incluye_menu.php' ?>
         <!--termina código que incluye el menú responsivo-->
-        <div class="container" style="background-image: url(img/01.jpg);">
+		<div class="container" style="background-image: url(img/01.jpg);">
             <div class="jumbotron" style="background-image: url(img/00.jpg);">
-                <h1>Registrar un Producto</h1>
-                <form role="form" id="login-form" 
-                      method="post" class="form-signin" 
-                      action="producto_guardar.php">
-                    
+                <form role="form" id="login-form" method="post" class="form-signin" action="producto_guardar.php">
                     <div class="h2">
-                        DATOS DEL PRODUCTO NUEVO
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre_del_proveedor">Nombre del producto</label>
-                        <input type="text" class="form-control" id="nombre_del_producto" name="nombre_del_producto"
-                               placeholder="Ingresa el producto nuevo" style="text-transform:uppercase;" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Categoria</label>
-                        <input type="text" class="form-control" id="categoria_producto" name="categoria_producto"
-                               placeholder="Ingresa la cateogira perteneciente (Botanas, Bebidas, etc.)" style="text-transform:uppercase;">
+                        Detalles del producto
                     </div>
 
                     <div class="form-group">
-                        <label>Cantidad</label>
-                        <input type="number" class="form-control" min = "0" max = "999" id="cantidad" name="cantidad"
-                               placeholder="Ingresa la cantidad del producto" style="text-transform:uppercase;">
+                        <label>ID de la marca seleccionada (<?php echo $nombre_marca_seleccionada ?>)</label>
+                        <input type="text" id="marca_id" class="form-control" name="marca_id" value="<?php echo $id_marca_seleccionada ?>" readonly="" 
+                               placeholder="<?php echo $nombre_marca_seleccionada ?>">
                     </div>
 
-                    <label>Precio Unitario</label>
-                    <input type="number" class="form-control" min = "1" max = "100" id="precio" name="precio"
-                           placeholder="Ingresa el precio del producto por unidad" style="text-transform:uppercase;">
-                    <br>
                     <div class="form-group">
-                        <label>Estado</label>
-							<select class="form-control" id="estado" name="estado">
-								<option value="Activo">Activo</option>
-								<option value="No activo">No Activo</option>
-							</select>
+                        <label>Nombre del producto</label>
+                        <input type="text" class="form-control" id="nombre_de_producto" name="nombre_de_producto"
+                               placeholder="Ingresa nombre del producto" style="text-transform:uppercase;" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripci&oacute;n del producto</label>
+                        <input type="text" class="form-control" id="descripcion_de_producto" name="descripcion_de_producto"
+                               placeholder="Ingresa descripci&oacute;n del producto" style="text-transform:uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <label for="ejemplo_archivo_1">Adjuntar un archivo</label>
+                        <input type="file" id="ejemplo_archivo_1">
+                        <p class="help-block">No se ha implementado la carga de im&aacute;genes</p>
                     </div>
                     <br>
-					<div class="form-group">
-                        <label>Fecha de Ingreso</label>
-                        <input type="date" class="form-control" id="fechaIng" name="fechaIng">
-                               placeholder="Ingresa la cantidad del producto" style="text-transform:uppercase;">
-                    </div>					
-					<br>
-                    <div class="form-group">
-                        <label>Clasificación</label>
-							<select class="form-control"id="clasif_prod" name="clasif_prod">
-								<option value="Nuevo">Nuevo</option>
-								<option value="Establecido">Establecido</option>
-							</select>
-                    </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <input type="reset" class="btn btn-default" value="Limpiar">
                 </form>
