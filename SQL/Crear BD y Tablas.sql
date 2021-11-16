@@ -39,3 +39,22 @@ CREATE TABLE `carritoCompras`.`productos` (
     REFERENCES `carritoCompras`.`marca` (`marca_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+	
+	
+/*TABLA SUCURSALES*/
+CREATE TABLE `carritoCompras`.`sucursal_cliente` (
+  `sucursal_id` INT NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT NOT NULL,
+  `sucursal_nombre` VARCHAR(100) NOT NULL DEFAULT 'Sin asignar',
+  `sucursal_direccion` VARCHAR(255) NULL DEFAULT 'Sin asignar',
+  `sucursal_telefono` VARCHAR(45) NULL DEFAULT 'Sin asignar',
+  `sucursal_celular` VARCHAR(45) NULL DEFAULT 'Sin asignar',
+  `sucursal_correo` VARCHAR(45) NULL DEFAULT 'Sin asignar',
+  PRIMARY KEY (`sucursal_id`),
+  UNIQUE INDEX `sucursal_id_UNIQUE` (`sucursal_id` ASC),
+  INDEX `cliente_id_idx` (`cliente_id` ASC),
+  CONSTRAINT `fk_cliente_id`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `carritoCompras`.`clientesFrecuentes` (`cliente_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
