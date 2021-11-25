@@ -58,3 +58,20 @@ CREATE TABLE `carritoCompras`.`sucursal_cliente` (
     REFERENCES `carritoCompras`.`clientesFrecuentes` (`cliente_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+	
+	
+/*TABLA CARRITO*/
+CREATE TABLE `carritoCompras`.`carrito` (
+  `venta_id` INT NOT NULL AUTO_INCREMENT,
+  `productos_id` INT NOT NULL,
+  `cantidad_producto` INT NOT NULL,
+  `fecha_venta` DATE NOT NULL,
+  `hora_venta` TIME NOT NULL,
+  PRIMARY KEY (`venta_id`),
+  UNIQUE INDEX `venta_id_UNIQUE` (`venta_id` ASC),
+  INDEX `productos_id_idx` (`productos_id` ASC),
+  CONSTRAINT `fk_productos_id`
+    FOREIGN KEY (`productos_id`)
+    REFERENCES `carritoCompras`.`productos` (`productos_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

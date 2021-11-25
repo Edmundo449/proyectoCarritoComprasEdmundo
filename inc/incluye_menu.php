@@ -14,7 +14,7 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 
-                <li class="active"><a href="#">VENTAS</a></li>
+                <li class="active"><a href="carritoVerProductos.php">VENTAS</a></li>
                 <!-- ELEMENTOS INDIVIDUALES DEL MENÚ
                 <li><a href="#">Cotizaciones</a></li>
                  -->
@@ -32,6 +32,7 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">PRODUCTOS<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="producto_seleccionar_marca.php">AGREGAR PRODUCTOS</a></li>
+						<li><a href="seleccionar_productos_nuevo_precio.php">AGREGAR NUEVO PRECIO A PRODUCTOS</a></li>
 						<li class="divider"></li>
                         <li><a href="#">EN CONSTRUCCION</a></li>
                     </ul>

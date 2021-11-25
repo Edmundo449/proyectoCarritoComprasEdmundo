@@ -19,7 +19,7 @@ $nombre_marca_seleccionada = $_GET['marca_nombre'];
         <!--termina código que incluye el menú responsivo-->
 		<div class="container" style="background-image: url(img/01.jpg);">
             <div class="jumbotron" style="background-image: url(img/00.jpg);">
-                <form role="form" id="login-form" method="post" class="form-signin" action="producto_guardar.php">
+			<form enctype="multipart/form-data" role="form" id="login-form" method="post" class="form-signin" action="producto_guardar.php">
                     <div class="h2">
                         Detalles del producto
                     </div>
@@ -40,10 +40,10 @@ $nombre_marca_seleccionada = $_GET['marca_nombre'];
                         <input type="text" class="form-control" id="descripcion_de_producto" name="descripcion_de_producto"
                                placeholder="Ingresa descripci&oacute;n del producto" style="text-transform:uppercase;">
                     </div>
-                    <div class="form-group">
-                        <label for="ejemplo_archivo_1">Adjuntar un archivo</label>
-                        <input type="file" id="ejemplo_archivo_1">
-                        <p class="help-block">No se ha implementado la carga de im&aacute;genes</p>
+                     <div class="form-group">
+                        <label class="custom-file">Selecciona una imagen en formato jpg o png</label>
+                        <input type="file" id="foto" name="foto" class="custom-file-input">
+                        <span class="custom-file-control"></span>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary">Guardar</button>
