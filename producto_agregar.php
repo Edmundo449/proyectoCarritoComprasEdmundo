@@ -40,6 +40,13 @@ $nombre_marca_seleccionada = $_GET['marca_nombre'];
                         <input type="text" class="form-control" id="descripcion_de_producto" name="descripcion_de_producto"
                                placeholder="Ingresa descripci&oacute;n del producto" style="text-transform:uppercase;">
                     </div>
+					
+                    <div class="form-group">
+                        <label>Precio del producto</label>
+                        <input type="number" class="form-control" id="precio_de_producto" name="precio_de_producto"
+                               placeholder="Ingresa el precio del producto" style="text-transform:uppercase;">
+                    </div>
+					
                      <div class="form-group">
                         <label class="custom-file">Selecciona una imagen en formato jpg o png</label>
                         <input type="file" id="foto" name="foto" class="custom-file-input">

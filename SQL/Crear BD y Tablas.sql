@@ -30,7 +30,8 @@ CREATE TABLE `carritoCompras`.`productos` (
   `marca_id` INT NOT NULL,
   `productos_nombre` VARCHAR(255) NOT NULL,
   `productos_descripcion` VARCHAR(255) NULL,
-  `productos_imagen` VARCHAR(255) NULL,
+  `precio_producto` INT NOT NULL,
+  `productos_imagen` VARCHAR(255) NULL,  
   PRIMARY KEY (`productos_id`),
   UNIQUE INDEX `productos_id_UNIQUE` (`productos_id` ASC),
   INDEX `fk_marca_id_idx` (`marca_id` ASC),
@@ -63,6 +64,7 @@ CREATE TABLE `carritoCompras`.`sucursal_cliente` (
 /*TABLA CARRITO*/
 CREATE TABLE `carritoCompras`.`carrito` (
   `venta_id` INT NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT NOT NULL,
   `productos_id` INT NOT NULL,
   `cantidad_producto` INT NOT NULL,
   `fecha_venta` DATE NOT NULL,
@@ -73,5 +75,24 @@ CREATE TABLE `carritoCompras`.`carrito` (
   CONSTRAINT `fk_productos_id`
     FOREIGN KEY (`productos_id`)
     REFERENCES `carritoCompras`.`productos` (`productos_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+	
+/*TABLA COMPRAS REALIZADAS*/
+CREATE TABLE `carritoCompras`.`comprasrealizadas` (
+  `venta_realizada_id` INT NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT NOT NULL,
+  `productos_confirmados_id` INT NOT NULL,
+  `cantidad_producto` INT NOT NULL,
+  `fecha_venta` DATE NOT NULL,
+  `hora_venta` TIME NOT NULL,
+  PRIMARY KEY (`venta_realizada_id`),
+  UNIQUE INDEX `venta_realizada_id_UNIQUE` (`venta_realizada_id` ASC),
+  INDEX `productos_confirmados_id_idx` (`productos_confirmados_id` ASC),
+  CONSTRAINT `fk_productos_confirmados_id`
+    FOREIGN KEY (`productos_confirmados_id`)
+    REFERENCES `carritoCompras`.`productos` (`productos_id`),
+	FOREIGN KEY (`cliente_id`)
+    REFERENCES `carritoCompras`.`clientesFrecuentes` (`cliente_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

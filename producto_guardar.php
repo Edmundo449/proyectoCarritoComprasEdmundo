@@ -4,6 +4,7 @@ $refaccion_id = "";
 $marca_id_post = $_POST['marca_id'];
 $nombre_producto_post = strtoupper($_POST['nombre_de_producto']);
 $descripcion_producto_post = strtoupper($_POST['descripcion_de_producto']);
+$precio_producto_post = strtoupper($_POST['precio_de_producto']);
 $producto_imagen="sin imagen";
 
 $sel = $con->prepare("SELECT productos_id,marca_id,productos_nombre FROM productos where marca_id=? AND productos_nombre=?");
@@ -18,8 +19,8 @@ if ($row != 0) {
     echo "<a href=\"refacciones_proveedores.php?productos_id=" . $productos_id . "&productos_nombre=" . $nombre_producto_post . "\" class=\"btn btn-primary\" role=\"button\"> AGREGAR </a>";
     echo "<a href=\"producto_seleccionar_marca.php\" class=\"btn btn-default\" role=\"button\"> CANCELAR </a>";
 } else {
-	$ins = $con->prepare("INSERT INTO productos VALUES(?,?,?,?,?)");
-	    $ins->bind_param("iisss", $id, $marca_id_post, $nombre_producto_post, $descripcion_producto_post, $producto_imagen);
+	$ins = $con->prepare("INSERT INTO productos VALUES(?,?,?,?,?,?)");
+	    $ins->bind_param("iissss", $id, $marca_id_post, $nombre_producto_post, $descripcion_producto_post, $precio_producto_post, $producto_imagen);
     if ($ins->execute()) {
 //SUBIR LA IMAGEN
         $ultimo_id = "noWhile";

@@ -14,17 +14,27 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 
-                <li class="active"><a href="carritoVerProductos.php">VENTAS</a></li>
-                <!-- ELEMENTOS INDIVIDUALES DEL MENÚ
+                <!-- <li class="active"><a href="carritoVerProductos.php">VENTAS</a></li>
+                 ELEMENTOS INDIVIDUALES DEL MENÚ
                 <li><a href="#">Cotizaciones</a></li>
                  -->
-                 <li class="dropdown">
+				 
+				 <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">VENTAS<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="carritoVerProductos.php">REALIZAR COMPRAS</a></li>
+                        <li class="divider"></li>
+                        <li><a href="lista_compras_realizadas.php">VER LISTA DE COMPRAS EFECTUADAS</a></li>
+                    </ul>
+                </li>
+				 
+                <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">CLIENTES<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="cliente_agregar.php">AGREGAR CLIENTES FRECUENTES</a></li>
                         <li><a href="negocio_registrar.php">AGREGAR NEGOCIO DE CLIENTES</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">EN CONSTRUCCION</a></li>
+                        <li><a href="lista_clientes.php">VER LISTA DE CLIENTES</a></li>
                     </ul>
                 </li>
                  
@@ -32,23 +42,23 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">PRODUCTOS<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="producto_seleccionar_marca.php">AGREGAR PRODUCTOS</a></li>
-						<li><a href="seleccionar_productos_nuevo_precio.php">AGREGAR NUEVO PRECIO A PRODUCTOS</a></li>
+						<!--<li><a href="seleccionar_productos_nuevo_precio.php">AGREGAR NUEVO PRECIO A PRODUCTOS</a></li>-->
 						<li class="divider"></li>
-                        <li><a href="#">EN CONSTRUCCION</a></li>
+                        <li><a href="lista_productos.php">VER LISTA DE PRODUCTOS</a></li>
                     </ul>
                 </li>
             
             </ul>
-            <form class="navbar-form navbar-left">
+            <!--<form class="navbar-form navbar-left">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Buscar" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
-            </form>
+            </form>-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li><a href="#">SALIR</a></li>
             </ul>
         </div>
     </nav>

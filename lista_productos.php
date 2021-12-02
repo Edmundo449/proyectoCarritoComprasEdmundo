@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>VENTA DE PRODUCTOS</title>
+        <title>Lista de Clientes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--código que incluye Bootstrap-->
@@ -27,20 +27,32 @@
                 <center>
 				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="50%">
                     <thead>
-                    <th>Nombre del producto</th>
-                    <th>Descripcion del producto</th>
+                    <th>ID Producto</th>
+                    <th>ID Marca</th>
+					<th>Nombre</th>
+					<th>Descripción</th>
 					<th>Precio</th>
 					<th>Imagen</th>
                     </thead>
                     <tfoot>
-                    <th>Nombre del producto</th>
-                    <th>Descripcion del producto</th>
+                    <th>ID Producto</th>
+                    <th>ID Marca</th>
+					<th>Nombre</th>
+					<th>Descripción</th>
 					<th>Precio</th>
 					<th>Imagen</th>
                     </tfoot>
                     <tbody>
                         <?php while ($f = $res->fetch_assoc()) { ?>
                             <tr>
+								<td>
+                                    <?php echo $f['productos_id'] ?>
+                                </td>
+								
+								<td>
+                                    <?php echo $f['marca_id'] ?>
+                                </td>
+								
                                 <td>
                                     <?php echo $f['productos_nombre'] ?>
                                 </td>
@@ -62,50 +74,7 @@
 						$sel->close();
                         ?>
                     <tbody>
-                </table>
-				<form method="post" action="carritoAgregar.php">
-				
-				<?php
-                $sel2 = $con->prepare("SELECT *from productos");
-                $sel2->execute();
-                $res2 = $sel2->get_result();
-				
-				$sel3 = $con->prepare("SELECT *from clientesfrecuentes");
-                $sel3->execute();
-                $res3 = $sel3->get_result();
-                ?>				
-				<div class="form-group">
-						<font color="black" face="Times New Roman" size="6"> Selecciona un producto: </font>
-                        <select class="selectpicker" name="productosId" id="productosId">
-                            <?php while ($f = $res2->fetch_assoc()) { ?>
-                                <option value="<?php echo $f['productos_id'] ?>"><?php echo $f['productos_nombre'] ?></option>
-                            <?php
-								}
-								$sel2->close();
-                            ?>
-                        </select>   
-					<br>
-						<font color="black" face="Times New Roman" size="6"> Selecciona un Cliente: </font>
-                        <select class="selectpicker" name="clienteID" id="clienteID">
-                            <?php while ($f = $res3->fetch_assoc()) { ?>
-                                <option value="<?php echo $f['cliente_id'] ?>"><?php echo $f['cliente_nombre'] ?></option>
-								<?php
-								}
-								$sel3->close();
-								$con->close();
-                            ?>
-                        </select> 
-					<br>
-					<font color="black" face="Times New Roman" size="6"> Cantidad: </font>
-					<input type="number" min = "1" max = "10" name = "cantidad">
-					
-					<input type="submit" value="Agregar al Carro">
-					
-					<a href="verCarrito.php" style="text-decoration:none">
-						<p> <img src = "img/03.png" width = "75px"> </p>
-						<font color="black" size="5"> Ver Carrito </font>
-					</a> 	
-				</div>
+                </table>				
 				</center>
             </div>
         </div>

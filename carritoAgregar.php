@@ -3,6 +3,7 @@
 	
 	$producto = $_POST["productosId"];
 	$cantidadIngresada = $_POST["cantidad"];
+	$cliente_id = $_POST["clienteID"];
 	date_default_timezone_set('America/Mexico_City');
 	setlocale(LC_ALL,'es_ES');
 	$horaMexico = strftime("%H:%M:%S");
@@ -15,8 +16,8 @@
 
 	else
 	{
-		$ins=$con->prepare("INSERT INTO carrito VALUES(?,?,?,?,?)");
-		$ins->bind_param("iisss",$id,$producto,$cantidadIngresada,$fechaMexico,$horaMexico);
+		$ins=$con->prepare("INSERT INTO carrito VALUES(?,?,?,?,?,?)");
+		$ins->bind_param("iissss",$id,$cliente_id,$producto,$cantidadIngresada,$fechaMexico,$horaMexico);
 		
 		if($ins->execute())
 		{
